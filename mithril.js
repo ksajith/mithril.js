@@ -1259,7 +1259,7 @@ var m = (function app(window, undefined) {
 	};
 	function identity(value) { return value; }
 
-	function ajax(options) {
+	m.ajax = function(options) {
 		if (options.dataType && options.dataType.toLowerCase() === "jsonp") {
 			var callbackKey = "mithril_callback_" + new Date().getTime() + "_" + (Math.round(Math.random() * 1e16)).toString(36)
 			var script = $document.createElement("script");
@@ -1394,7 +1394,7 @@ var m = (function app(window, undefined) {
 			if (xhrOptions.background !== true) m.endComputation()
 		}
 
-		ajax(xhrOptions);
+		m.ajax(xhrOptions);
 		deferred.promise = propify(deferred.promise, xhrOptions.initialValue);
 		return deferred.promise;
 	};
